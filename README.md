@@ -13,6 +13,16 @@ Project requires a PC with RS232 connection.
 
 The OpenScale board is directly powered from USB connection. Immediately after power is applied, the board powers up and waits for user entry to either calibrate the load cell; or if the board has been previously calibrated proceed to zero-out (TARE) and then proceed to measurements. While the board is in measurement mode, entering "R" or "r" characters on the RS232 terminal will re-start the zero-out (TARE) process. 
 
+### Startup
+Immediately after startup the OpenScale will determine if the board was previously calibrated. It does this by checking the internal EEPROM to determine if a proper previous calibration was stored. If a previous calibration exists it will prompt to either use it or re-calibrate: "_CAL Data Exists, Skip Cal Sequence (Y/N)_". Normally if calibration exists one would chose to skip a new calibration and proceed to measurements.
+
+#### Normal Operation
+If calibration is skipped, the OpenScale will proceed to ask to remove anything from the top of the scale plate (_"Remove all weight from scale"_) and continue to zero-out (or TARE) the scale for use (_"Zeroing (tare) scale..."_). Once that is complete it will indicate it is ready for measurements (_"Scale zeroed ... Place desired weight on scale"_).
+
+#### Scale Calibration
+If no calibration exists, or a new calibration is desired, the OpenScale will initiate the calibration sequence. It will ask to remove anything from the top of the scale (_"Remove all weight from scale"_), and will zero itself out. Once it is reedy to calibrate it will indicate when it is ready to start measuring (_"After readings begin, place known weight on scale"_).
+Once measurements start, the keys "a", "d", "g" are used to increase the calibration factor (if the measurement is too low - compared to the known weight). And the keys "z", "c", "b" are used to decrease the calibration factor (if the measurement is too high - compared to the known weight). Once a reasonable measurement is achieved, calibration can be exited by entering "x". When calibration exits, the calibration factor is saved in the EEPROM for future use and the measurement cycles is started.
+
 ## Final Build
 | ![](/OpenScale_1a.jpg) | ![](/OpenScale_3.jpg) |
 ![](/OpenScale_4.jpg)
